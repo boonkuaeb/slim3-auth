@@ -11,4 +11,19 @@ $app = new \Slim\App([
 ]);
 
 
-require __DIR__.'/../app/routes.php';
+$container = $app->getContainer();
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
+        'cache' => false // production set true
+    ]);
+
+    $view->addExtension(new \Slim\Views\TwigExtension(
+        $container->router,
+        $container->request->getUri()
+    ));
+
+    return $view;
+};
+
+
+require __DIR__ . '/../app/routes.php';
