@@ -28,7 +28,7 @@ $container['view'] = function ($container) {
 
 $container['HomeController'] = function ($container)
 {
-    return new \Slim3Auth\Controllers\HomeController;
+    return new \Slim3Auth\Controllers\HomeController($container);
 };
 
 require __DIR__ . '/../app/routes.php';

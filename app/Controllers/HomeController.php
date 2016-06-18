@@ -2,11 +2,14 @@
 
 namespace Slim3Auth\Controllers;
 
+use Slim\Views\Twig as View;
 
-class HomeController
+class HomeController extends Controller
 {
+
+
     public function index($request, $response)
     {
-        return 'Home Controller';
+        $this->view->render($response,"home.twig");
     }
 }
