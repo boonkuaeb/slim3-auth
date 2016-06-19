@@ -67,7 +67,11 @@ $container['AuthController'] = function ($container)
 };
 
 $container['csrf'] = function($container){
-    return new \Slim\Csrf\Guard();
+    return new \Slim\Csrf\Guard;
+};
+
+$container['auth'] = function($container){
+    return new \Slim3Auth\Auth\Auth;
 };
 
 $app->add(new \Slim3Auth\Middleware\ValidationErrorMiddleware($container));
