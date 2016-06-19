@@ -41,9 +41,7 @@ class AuthController extends Controller
             $request->getParam('password')
         );
 
-        if(!$auth)
-        {
-
+        if (!$auth) {
             return $response->withRedirect($this->router->pathFor('auth.signin'));
         }
 
@@ -80,6 +78,7 @@ class AuthController extends Controller
         );
 
         $this->auth->attempt($user->email, $request->getParam('password'));
+
         return $response->withRedirect($this->router->pathFor('home'));
 
     }
