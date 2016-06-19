@@ -70,6 +70,7 @@ class AuthController extends Controller
             ]
         );
 
+        $this->auth->attempt($user->email, $request->getParam('password'));
         return $response->withRedirect($this->router->pathFor('home'));
 
     }
