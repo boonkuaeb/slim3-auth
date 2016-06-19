@@ -11,9 +11,8 @@ class AuthController extends Controller
     public function getSignOut($request, $response)
     {
         $this->auth->logout();
-
-        // redirect
-        return $response->withRedirect($this->router->pathFor('homeq'));
+        $this->flash->addMessage('info','You have been sign out!');
+        return $response->withRedirect($this->router->pathFor('home'));
 
     }
 
@@ -32,6 +31,7 @@ class AuthController extends Controller
             ]);
 
         if ($validation->failed()) {
+            $this->flash->addMessage('error','Could not sign you in with those details.');
             return $response->withRedirect($this->router->pathFor('auth.signin'));
         }
 
@@ -42,9 +42,11 @@ class AuthController extends Controller
         );
 
         if (!$auth) {
+            $this->flash->addMessage('error','Could not sign you in with those details.');
             return $response->withRedirect($this->router->pathFor('auth.signin'));
         }
 
+        $this->flash->addMessage('info','You have been sign in!');
         return $response->withRedirect($this->router->pathFor('home'));
 
     }
@@ -75,6 +77,8 @@ class AuthController extends Controller
                 'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT)
             ]
         );
+
+        $this->flash->addMessage('success','You have been sign up!');
 
         $this->auth->attempt($user->email, $request->getParam('password'));
 
