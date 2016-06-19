@@ -1,4 +1,7 @@
 <?php
+
+use Respect\Validation\Validator as v;
+
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -66,5 +69,8 @@ $container['AuthController'] = function ($container)
 
 $app->add(new \Slim3Auth\Middleware\ValidationErrorMiddleware($container));
 $app->add(new \Slim3Auth\Middleware\OldInputMiddleware($container));
+
+
+v::with('Slim3Auth\Validation\Rules\\');
 
 require __DIR__ . '/../app/routes.php';
