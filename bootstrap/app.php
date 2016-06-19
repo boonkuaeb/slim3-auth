@@ -66,10 +66,15 @@ $container['AuthController'] = function ($container)
     return new \Slim3Auth\Controllers\Auth\AuthController($container);
 };
 
+$container['csrf'] = function($container){
+    return new \Slim\Csrf\Guard();
+};
 
 $app->add(new \Slim3Auth\Middleware\ValidationErrorMiddleware($container));
 $app->add(new \Slim3Auth\Middleware\OldInputMiddleware($container));
 
+
+$app->add($container->csrf);
 
 v::with('Slim3Auth\Validation\Rules\\');
 
