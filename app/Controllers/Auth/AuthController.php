@@ -8,6 +8,15 @@ use Slim3Auth\Models\User;
 
 class AuthController extends Controller
 {
+    public function getSignOut($request, $response)
+    {
+        $this->auth->logout();
+
+        // redirect
+        return $response->withRedirect($this->router->pathFor('homeq'));
+
+    }
+
 
     public function getSignIn($request, $response)
     {
