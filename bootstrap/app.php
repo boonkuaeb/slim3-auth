@@ -53,4 +53,9 @@ $container['HomeController'] = function ($container)
     return new \Slim3Auth\Controllers\HomeController($container);
 };
 
+$container['AuthController'] = function ($container)
+{
+    return new \Slim3Auth\Controllers\Auth\AuthController($container);
+};
+
 require __DIR__ . '/../app/routes.php';
