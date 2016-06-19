@@ -47,7 +47,6 @@ class AuthController extends Controller
 
         return $response->withRedirect($this->router->pathFor('home'));
 
-
     }
 
 
