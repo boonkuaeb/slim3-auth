@@ -72,6 +72,7 @@ $container['csrf'] = function($container){
 
 $app->add(new \Slim3Auth\Middleware\ValidationErrorMiddleware($container));
 $app->add(new \Slim3Auth\Middleware\OldInputMiddleware($container));
+$app->add(new \Slim3Auth\Middleware\CsrfViewMiddleware($container));
 
 
 $app->add($container->csrf);
