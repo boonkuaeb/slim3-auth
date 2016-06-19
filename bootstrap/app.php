@@ -63,4 +63,7 @@ $container['AuthController'] = function ($container)
     return new \Slim3Auth\Controllers\Auth\AuthController($container);
 };
 
+
+$app->add(new \Slim3Auth\Middleware\ValidationErrorMiddleware($container));
+
 require __DIR__ . '/../app/routes.php';
