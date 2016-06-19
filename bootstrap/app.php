@@ -65,5 +65,6 @@ $container['AuthController'] = function ($container)
 
 
 $app->add(new \Slim3Auth\Middleware\ValidationErrorMiddleware($container));
+$app->add(new \Slim3Auth\Middleware\OldInputMiddleware($container));
 
 require __DIR__ . '/../app/routes.php';
